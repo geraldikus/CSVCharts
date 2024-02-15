@@ -8,11 +8,12 @@
 import SwiftUI
 import Charts
 
+
+// Сделать наведение по графику
+
 struct ChartsView: View {
     @ObservedObject var viewModel: ChartsViewModel
-    let yScale = 5
-    
-    // Выбор bacground color
+    let scaleY = 5
     
     var body: some View {
         
@@ -50,7 +51,7 @@ struct ChartsView: View {
             .foregroundStyle(viewModel.chartColor)
             .scaleEffect(1)
             .chartXScale(domain: minDate...maxDate)
-            .chartYScale(domain: (minHour-yScale)...(maxHour+yScale))
+            .chartYScale(domain: (minHour-scaleY)...(maxHour+scaleY))
             .chartPlotStyle { area in
                 area.background(viewModel.chartBackgroundPicker)
             }
@@ -58,13 +59,13 @@ struct ChartsView: View {
             HStack(alignment: .firstTextBaseline) {
                 Text("Выберите цвет графика")
                 Spacer()
-                chartPicker()
+                colorPicker(type: .chartColor)
             }
             
             HStack(alignment: .firstTextBaseline) {
                 Text("Выберите цвет заливки")
                 Spacer()
-                chartBackgroundPicker()
+                colorPicker(type: .chartBackgroundColor)
             }
             
             Toggle(viewModel.showMedian ? "Убрать медиану" : "Показать медиану", isOn: $viewModel.showMedian)
@@ -91,35 +92,15 @@ struct ChartsView: View {
         .padding()
     }
     
-    func chartPicker() -> some View {
-        Picker("", selection: $viewModel.chartColor) {
-            ForEach(ChartColor.allCases, id: \.self) { color in
-                switch color {
-                case .green:
-                    Text("Green").tag(Color.green)
-                case .blue:
-                    Text("Blue").tag(Color.blue)
-                case .yellow:
-                    Text("Yellow").tag(Color.yellow)
-                }
+    func colorPicker(type: ColorPickerType) -> some View {
+        Picker("", selection: type == .chartColor ? $viewModel.chartColor : $viewModel.chartBackgroundPicker) {
+            ForEach(ColorOption.allCases, id: \.self) { colorOption in
+                let color = colorOption.color
+                let tag: Color = type == .chartColor ? color : color.opacity(0.2)
+                Text(colorOption.name).tag(tag)
             }
         }
         .pickerStyle(.menu)
-    }
-    
-    func chartBackgroundPicker() -> some View {
-        Picker("", selection: $viewModel.chartBackgroundPicker) {
-            ForEach(ChartBackgroundColor.allCases, id: \.self) { color in
-                switch color {
-                case .green:
-                    Text("Green").tag(Color.green.opacity(0.2))
-                case .blue:
-                    Text("Blue").tag(Color.blue.opacity(0.2))
-                case .yellow:
-                    Text("Yellow").tag(Color.yellow.opacity(0.2))
-                }
-            }
-        }
     }
 }
 
@@ -127,16 +108,7 @@ struct ChartsView: View {
     ChartsView(viewModel: ChartsViewModel())
 }
 
-enum ChartColor: String, CaseIterable {
-    case green = "Green"
-    case blue = "Blue"
-    case yellow = "Yellow"
-}
 
-enum ChartBackgroundColor: String, CaseIterable {
-    case green = "Green"
-    case blue = "Blue"
-    case yellow = "Yellow"
-}
+
 
 
