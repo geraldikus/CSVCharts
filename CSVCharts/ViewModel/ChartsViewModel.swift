@@ -12,10 +12,11 @@ class ChartsViewModel: NSObject, ObservableObject, UIDocumentPickerDelegate {
     
     @Published var chartsModels: [ChartsModel] = []
     @Published var testData = ChartsModel.tests
-    
-    func loadData(from mainViewModel: MainViewModel) {
-        chartsModels = mainViewModel.chartsModels
-    }
+    @Published var chartName: String = ""
+    @Published var chartColor: Color = .blue
+    @Published var chartBackgroundPicker: Color = .green.opacity(0.2)
+    @Published var showMedian = false
+    @Published var chartStyle = true
     
     
     func importCSV() {

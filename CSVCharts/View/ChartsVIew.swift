@@ -9,13 +9,7 @@ import SwiftUI
 import Charts
 
 struct ChartsView: View {
-    @ObservedObject var viewModel = ChartsViewModel()
-    @State private var scale: CGFloat = 1.0
-    @State private var selectedColor: ChartColor = .blue
-    @State private var showMedian = false
-    
-    @State private var chartColor: Color = .blue
-    @State private var chartStyle = true
+    @ObservedObject var viewModel: ChartsViewModel
     let yScale = 5
     
     // Выбор bacground color
@@ -28,6 +22,8 @@ struct ChartsView: View {
         let maxHour = viewModel.maximumHour
 
         VStack(spacing: 10) {
+            Text("\(viewModel.chartName)")
+                .font(.headline)
             Chart(viewModel.chartsModels) { data in
                 Plot {
                     LineMark(x: .value("Date", data.date), y: .value("Hour", data.hour))
@@ -38,7 +34,7 @@ struct ChartsView: View {
                 .symbol(.circle)
                 
                 
-                if showMedian {
+                if viewModel.showMedian {
                     if let medianHour = viewModel.medianHour {
                         RuleMark(y: .value("Median", medianHour))
                             .foregroundStyle(.cyan)
@@ -51,77 +47,84 @@ struct ChartsView: View {
                 }
             }
             .aspectRatio(contentMode: .fit)
-            .foregroundStyle(chartColor)
+            .foregroundStyle(viewModel.chartColor)
             .scaleEffect(1)
             .chartXScale(domain: minDate...maxDate)
             .chartYScale(domain: (minHour-yScale)...(maxHour+yScale))
             .chartPlotStyle { area in
-                area.background(.green.opacity(0.2))
+                area.background(viewModel.chartBackgroundPicker)
             }
             
-            picker()
-                .padding(.vertical)
+            HStack(alignment: .firstTextBaseline) {
+                Text("Выберите цвет графика")
+                Spacer()
+                chartPicker()
+            }
             
-            Button(action: {
-                showMedian.toggle()
-            }, label: {
-                Text("Показать медиану")
-            })
-            .buttonStyle(.bordered)
+            HStack(alignment: .firstTextBaseline) {
+                Text("Выберите цвет заливки")
+                Spacer()
+                chartBackgroundPicker()
+            }
             
-            Button(action: {
-                print("Data from ChartModel: \(viewModel.chartsModels)")
-            }, label: {
-                Text("Показать данные")
-            })
-            .buttonStyle(.bordered)
+            Toggle(viewModel.showMedian ? "Убрать медиану" : "Показать медиану", isOn: $viewModel.showMedian)
             
-            Button(action: {
-                viewModel.importCSV()
-            }, label: {
-                Text("Добавить CSV файл")
-            })
-            .buttonStyle(.bordered)
-            
-            Button(action: {
-                viewModel.chartsModels.removeAll()
-            }, label: {
-                Text("Удалить данные")
-            })
-            .buttonStyle(.bordered)
+            HStack {
+                Button(action: {
+                    viewModel.importCSV()
+                }, label: {
+                    Text("Добавить CSV файл")
+                })
+                .buttonStyle(.borderedProminent)
+                
+                Button(action: {
+                    viewModel.chartsModels.removeAll()
+                }, label: {
+                    Text("Удалить данные")
+                })
+                .background(Color.red.opacity(0.7))
+                .buttonStyle(.bordered)
+                .foregroundStyle(Color.white)
+                .cornerRadius(5)
+            }
         }
         .padding()
     }
     
-    func picker() -> some View {
-        Picker("Pick color", selection: $selectedColor) {
+    func chartPicker() -> some View {
+        Picker("", selection: $viewModel.chartColor) {
             ForEach(ChartColor.allCases, id: \.self) { color in
                 switch color {
                 case .green:
-                    Text("Green").tag(ChartColor.green)
+                    Text("Green").tag(Color.green)
                 case .blue:
-                    Text("Blue").tag(ChartColor.blue)
+                    Text("Blue").tag(Color.blue)
                 case .yellow:
-                    Text("Yellow").tag(ChartColor.yellow)
+                    Text("Yellow").tag(Color.yellow)
                 }
             }
         }
-        .pickerStyle(SegmentedPickerStyle())
-        .onChange(of: selectedColor) { newColor in
-            switch newColor {
-            case .green:
-                chartColor = .green
-            case .blue:
-                chartColor = .blue
-            case .yellow:
-                chartColor = .yellow
+        .pickerStyle(.menu)
+    }
+    
+    func chartBackgroundPicker() -> some View {
+        Picker("", selection: $viewModel.chartBackgroundPicker) {
+            ForEach(ChartBackgroundColor.allCases, id: \.self) { color in
+                switch color {
+                case .green:
+                    Text("Green").tag(Color.green.opacity(0.2))
+                case .blue:
+                    Text("Blue").tag(Color.blue.opacity(0.2))
+                case .yellow:
+                    Text("Yellow").tag(Color.yellow.opacity(0.2))
+                }
             }
         }
     }
 }
 
 #Preview {
-    ChartsView()
+    ChartsView(viewModel: ChartsViewModel())
 }
 
 enum ChartColor: String, CaseIterable {
@@ -129,3 +132,11 @@ enum ChartColor: String, CaseIterable {
     case blue = "Blue"
     case yellow = "Yellow"
 }
+
+enum ChartBackgroundColor: String, CaseIterable {
+    case green = "Green"
+    case blue = "Blue"
+    case yellow = "Yellow"
+}
+
+

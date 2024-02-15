@@ -10,41 +10,35 @@ import MobileCoreServices
 
 struct MainView: View {
     
-    @ObservedObject var viewModel = MainViewModel()
-    
-    // Add textField with chart name
+    @ObservedObject var chartViewModel: ChartsViewModel
+    @State private var navigateToChartsView = false
     
     var body: some View {
         NavigationView{
             VStack(alignment: .center) {
-                Text("Добавьте свой CSV файл.")
+                Text("Это приложение поможет вам перевести ваш файл CSV в красивый график.")
                     .font(.title)
+                    .multilineTextAlignment(.center)
+                
+                TextField("Введите название графика", text: $chartViewModel.chartName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                HStack {
-                    Button {
-                        viewModel.importCSV()
-                    } label: {
-                        Text("Добавить")
+                NavigationLink(destination: ChartsView(viewModel: chartViewModel), isActive: $navigateToChartsView) {
+                    Button(action: {
+                        navigateToChartsView = true
+                    }) {
+                        Text("Добавить имя")
                     }
-                    .buttonStyle(.bordered)
-                    NavigationLink {
-                        ChartsView()
-                    } label: {
-                        Text("График")
-                            .background()
-                    }
-
+                    .buttonStyle(.borderedProminent)
+                    .disabled(chartViewModel.chartName.isEmpty)
                 }
             }
             .padding()
         }
     }
-    
-    func navigateToChartsView() {
-    }
 }
 
 
 #Preview {
-    MainView()
+    MainView(chartViewModel: ChartsViewModel())
 }

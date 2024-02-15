@@ -11,7 +11,7 @@ import SwiftUI
 struct CSVChartsApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(chartViewModel: ChartsViewModel())
         }
     }
 }

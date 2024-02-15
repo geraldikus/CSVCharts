@@ -7,25 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A4031902B7DF6DA007AD972 /* NewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40318F2B7DF6DA007AD972 /* NewViewModel.swift */; };
 		3A4FB55D2B7C8FD800812D08 /* CSVChartsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB55C2B7C8FD800812D08 /* CSVChartsApp.swift */; };
 		3A4FB55F2B7C8FD800812D08 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB55E2B7C8FD800812D08 /* MainView.swift */; };
 		3A4FB5612B7C8FDA00812D08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FB5602B7C8FDA00812D08 /* Assets.xcassets */; };
 		3A4FB5642B7C8FDA00812D08 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FB5632B7C8FDA00812D08 /* Preview Assets.xcassets */; };
-		3A4FB56E2B7C90FC00812D08 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB56D2B7C90FC00812D08 /* MainViewModel.swift */; };
 		3A4FB5752B7C9E6800812D08 /* ChartsVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB5742B7C9E6800812D08 /* ChartsVIew.swift */; };
 		3A4FB5772B7CA0E400812D08 /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB5762B7CA0E400812D08 /* ChartsModel.swift */; };
 		3A4FB5792B7CA13100812D08 /* ChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB5782B7CA13100812D08 /* ChartsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A40318F2B7DF6DA007AD972 /* NewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewModel.swift; sourceTree = "<group>"; };
 		3A4FB5592B7C8FD700812D08 /* CSVCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSVCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A4FB55C2B7C8FD800812D08 /* CSVChartsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVChartsApp.swift; sourceTree = "<group>"; };
 		3A4FB55E2B7C8FD800812D08 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3A4FB5602B7C8FDA00812D08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A4FB5632B7C8FDA00812D08 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3A4FB56D2B7C90FC00812D08 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		3A4FB56F2B7C9AF400812D08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3A4FB5742B7C9E6800812D08 /* ChartsVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsVIew.swift; sourceTree = "<group>"; };
 		3A4FB5762B7CA0E400812D08 /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
@@ -93,9 +89,7 @@
 		3A4FB56B2B7C90E600812D08 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				3A4FB56D2B7C90FC00812D08 /* MainViewModel.swift */,
 				3A4FB5782B7CA13100812D08 /* ChartsViewModel.swift */,
-				3A40318F2B7DF6DA007AD972 /* NewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,10 +175,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A4031902B7DF6DA007AD972 /* NewViewModel.swift in Sources */,
 				3A4FB5772B7CA0E400812D08 /* ChartsModel.swift in Sources */,
 				3A4FB5792B7CA13100812D08 /* ChartsViewModel.swift in Sources */,
-				3A4FB56E2B7C90FC00812D08 /* MainViewModel.swift in Sources */,
 				3A4FB55F2B7C8FD800812D08 /* MainView.swift in Sources */,
 				3A4FB55D2B7C8FD800812D08 /* CSVChartsApp.swift in Sources */,
 				3A4FB5752B7C9E6800812D08 /* ChartsVIew.swift in Sources */,
