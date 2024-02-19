@@ -14,6 +14,7 @@
 		3A4FB5752B7C9E6800812D08 /* ChartsVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB5742B7C9E6800812D08 /* ChartsVIew.swift */; };
 		3A4FB5772B7CA0E400812D08 /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB5762B7CA0E400812D08 /* ChartsModel.swift */; };
 		3A4FB5792B7CA13100812D08 /* ChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4FB5782B7CA13100812D08 /* ChartsViewModel.swift */; };
+		3AA6D52C2B7E378A00CFE677 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA6D52B2B7E378900CFE677 /* ColorPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3A4FB5742B7C9E6800812D08 /* ChartsVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsVIew.swift; sourceTree = "<group>"; };
 		3A4FB5762B7CA0E400812D08 /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
 		3A4FB5782B7CA13100812D08 /* ChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewModel.swift; sourceTree = "<group>"; };
+		3AA6D52B2B7E378900CFE677 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				3A4FB5762B7CA0E400812D08 /* ChartsModel.swift */,
+				3AA6D52B2B7E378900CFE677 /* ColorPicker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				3A4FB55F2B7C8FD800812D08 /* MainView.swift in Sources */,
 				3A4FB55D2B7C8FD800812D08 /* CSVChartsApp.swift in Sources */,
 				3A4FB5752B7C9E6800812D08 /* ChartsVIew.swift in Sources */,
+				3AA6D52C2B7E378A00CFE677 /* ColorPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 import SwiftUI
 import MobileCoreServices
 
-class ChartsViewModel: NSObject, ObservableObject, UIDocumentPickerDelegate {
+final class ChartsViewModel: NSObject, ObservableObject, UIDocumentPickerDelegate {
     
     @Published var chartsModels: [ChartsModel] = []
     @Published var testData = ChartsModel.tests
