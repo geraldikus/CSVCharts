@@ -11,7 +11,6 @@ import MobileCoreServices
 final class ChartsViewModel: NSObject, ObservableObject, UIDocumentPickerDelegate {
     
     @Published var chartsModels: [ChartsModel] = []
-    @Published var testData = ChartsModel.tests
     @Published var chartName: String = ""
     @Published var chartColor: Color = .blue
     @Published var chartBackgroundPicker: Color = .green.opacity(0.2)
@@ -36,7 +35,7 @@ final class ChartsViewModel: NSObject, ObservableObject, UIDocumentPickerDelegat
             let csvString = String(data: data, encoding: .utf8)
             decodeCSV(csvString: csvString)
             print("I can read CSV")
-            print("CSV: \(csvString)")
+            print("CSV: \(String(describing: csvString))")
         } catch {
             print("Error: \(error)")
         }

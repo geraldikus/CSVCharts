@@ -11,8 +11,10 @@ import Charts
 struct ChartsView: View {
     
     @ObservedObject var viewModel: ChartsViewModel
-    let scaleY = 5
     @State private var currentValue: ChartsModel?
+    @State private var isShowingAlert = false
+    @State private var chartNameInput = ""
+    let scaleY = 5
     
     var body: some View {
         
@@ -25,7 +27,6 @@ struct ChartsView: View {
                     
                 }
                 .symbol(.circle)
-                
                 
                 if viewModel.showMedian {
                     if let medianHour = viewModel.medianHour {
@@ -110,6 +111,16 @@ struct ChartsView: View {
             
             Toggle(viewModel.showMedian ? "Убрать медиану" : "Показать медиану", isOn: $viewModel.showMedian)
             
+            Button {
+                isShowingAlert.toggle()
+            } label: {
+                Text("Изменить название графика")
+            }
+            .buttonStyle(.bordered)
+            .alert("Введите новое название для графика", isPresented: $isShowingAlert) {
+                TextField("Название графика", text: $viewModel.chartName)
+            }
+            
             HStack {
                 Button(action: {
                     viewModel.importCSV()
@@ -120,6 +131,7 @@ struct ChartsView: View {
                 
                 Button(action: {
                     viewModel.chartsModels.removeAll()
+                    viewModel.chartName = ""
                 }, label: {
                     Text("Удалить данные")
                 })
@@ -131,7 +143,6 @@ struct ChartsView: View {
         }
         .padding()
     }
-
 }
 
 #Preview {
@@ -139,6 +150,7 @@ struct ChartsView: View {
 }
 
 private extension ChartsView {
+    
     func colorPicker(type: ColorPickerType) -> some View {
         Picker("", selection: type == .chartColor ? $viewModel.chartColor : $viewModel.chartBackgroundPicker) {
             ForEach(ColorOption.allCases, id: \.self) { colorOption in
